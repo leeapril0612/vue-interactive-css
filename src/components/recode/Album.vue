@@ -1,17 +1,28 @@
 <template>
-  <section class="album active">
+  <section 
+    class="album"
+    :class="{
+      active: props.isActive
+    }"
+  >
     <div class="disk">
       <div class="disk_inner" :style="{
         backgroundColor: props.diskInnerColor
       }"></div>
     </div>
-    <a @click.prevent="emits('clcikCoverImg')" class="coverImg">
-      <img :src="coverImg" alt="">
-    </a>
+    <div @click.prevent="emits('clcikCoverImg')" class="coverImg">
+      <img :src="imageUrl" alt="">
+    </div >
   </section>
 </template>
+
 <script setup>
+import {computed} from 'vue'
 const props = defineProps({
+  isActive: {
+    type: Boolean,
+    default: false
+  },
   coverImg: {
     Type: String,
     default: ""
@@ -23,10 +34,14 @@ const props = defineProps({
 })
 
 const emits = defineEmits(["clcikCoverImg"])
+
+const imageUrl = computed(() => {
+  return new URL(props.coverImg).href;
+})
 </script>
 
 <style scoped>
-/* .album {
+.album {
   position: absolute;
   top: 47%;
   left: 55%;
@@ -36,7 +51,7 @@ const emits = defineEmits(["clcikCoverImg"])
   visibility: hidden;
   opacity: 0;
   transition: all 0.4s ease-in-out;
-} */
+}
 
 @media only screen and (max-width: 720px) {
   .album {
@@ -55,6 +70,7 @@ const emits = defineEmits(["clcikCoverImg"])
 .album.active .disk {
   left: 180px;
   transition-delay: 0.5s;
+  visibility: visible;
 }
 
 @media only screen and (max-width: 720px) {
@@ -98,6 +114,7 @@ const emits = defineEmits(["clcikCoverImg"])
   box-shadow: 4px 14px 40px rgba(0, 0, 0, 0.3);
   transition: left 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   animation: rotateAni 10s ease infinite;
+  visibility: hidden;
 }
 
 @media only screen and (max-width: 720px) {
@@ -141,5 +158,14 @@ const emits = defineEmits(["clcikCoverImg"])
 .album:hover .disk {
   left: 40%;
   transition-delay: 0s;
+}
+
+@keyframes rotateAni {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>
