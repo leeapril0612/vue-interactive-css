@@ -1,53 +1,43 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, onUnmounted } from 'vue'
 import TweenMax, { Power3, Power4 } from "gsap"
 import ScrollToPlugin from "gsap/ScrollToPlugin"
 TweenMax.registerPlugin(ScrollToPlugin)
 
 const title = "section-5 별이 쏟아지는"
+const titleRefs = ref()
+
+const starBgRef = ref()
 const titleRef = ref()
 
+const bottomRef = ref()
+
 onMounted(() => {
-  console.log(titleRef)
-  var starBg = document.querySelector(".starBg")
-  var title = document.querySelector(".title")
-  var topBtn = document.querySelector(".topBtn")
+  console.log(titleRefs)
+  var starBg = ref() // document.querySelector(".starBg")
+  var title = ref() // document.querySelector(".title")
 
   //스크롤 이벤트
   window.addEventListener("scroll", function (event) {
     // scrollTop = document.documentElement.scrollTop
     var scroll = this.scrollY;
-    starBg.style.transform = `translateY("${-scroll / 3}px)`
-    title.style.transform = `translateY("${scroll / 1.7}px)`
+    starBg.value.style.transform = `translateY("${-scroll / 3}px)`
+    title.value.style.transform = `translateY("${scroll / 1.7}px)`
   });
 
   //텍스트 모션
-  for (var i = 0; i < title.querySelectorAll('div').length; i++) {
-
-    var _text = title.querySelectorAll('div')[i]
-
-    TweenMax.from(_text, 1, {
+  titleRefs.value?.map((titleRef) => {
+    TweenMax.from(titleRef, 1, {
       autoAlpha: 0,
-      // scale:4,
-      // rotate: Math.random()*360,
       delay: Math.random() * 1,
       ease: Power3.easeInOut
     });
-  }
+  })
 
-
-  //스크롤 이동하는 3가지 방법
-  // setTimeout(function(){
-  //     window.scrollTo({
-  //         top: document.querySelector('.bottom').offsetTop
-  //         ,behavior: 'smooth'
-  //     });
-  //     // document.querySelector('.bottom').scrollIntoView({ behavior: 'smooth' });
-  // }, 2000)
-
+  // 하단 이동
   TweenMax.to(window, 2, {
     scrollTo: {
-      y: ".bottom"
+      y: bottomRef.value
       //autoKill: true
     },
     delay: 1.7,
@@ -55,36 +45,38 @@ onMounted(() => {
   });
 
   //하단 영역 커지는 것
-  TweenMax.from(".bottom", 2.5, {
+  TweenMax.from(bottomRef.value, 2.5, {
     scale: .7,
     y: 100,
     delay: 2.2,
     ease: Power3.easeInOut
   });
-
-  topBtn.addEventListener("click", function () {
-    TweenMax.to(window, 1.5, {
-      scrollTo: {
-        y: 0,
-        autoKill: true
-      },
-      ease: Power3.easeInOut
-    });
-  })
 })
+
+const onClickTop = () => {
+
+  TweenMax.to(window, 1.5, {
+    scrollTo: {
+      y: 0,
+      autoKill: true
+    },
+    ease: Power3.easeInOut
+  });
+
+}
 </script>
 
 <template>
-  <div class="starBg"></div>
+  <div class="starBg" ref="starBgRef"></div>
   <section class="top">
-    <h1 class="title">
-      <div v-for="item in title.split('')" ref="titleRef" :key="item">
+    <h1 class="title" ref="titleRef">
+      <div v-for="item in title.split('')" ref="titleRefs" :key="item">
         {{ item }}
       </div>
     </h1>
   </section>
 
-  <section class="bottom">
+  <section class="bottom" ref="bottomRef">
     <div class="contWrap">
       <ul>
         <li>
@@ -102,7 +94,7 @@ onMounted(() => {
       </ul>
       <h2>별이 쏟아지는, 인터랙티브</h2>
     </div>
-    <button button="type" class="topBtn">TOP</button>
+    <button button="type" class="topBtn" @click="onClickTop">TOP</button>
   </section>
 </template>
 
