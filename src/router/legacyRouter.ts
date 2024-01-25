@@ -6,5 +6,10 @@ export default [
         // this generates a separate chunk (About.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
         component: () => import('../views/legacy/recode1.vue')
+    },
+    {
+        path: '/legacy/star',
+        name: 'legacy/star',
+        component: () => import('../views/legacy/star.vue')
     }
 ]
