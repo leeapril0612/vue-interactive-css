@@ -9,4 +9,6 @@
   <br>
   <RouterLink :to="{ name: 'legacy/star' }">legacy/star</RouterLink><br>
   <RouterLink :to="{ name: 'vue/star' }">vue/star</RouterLink>
+
+  <br>
 </template>
