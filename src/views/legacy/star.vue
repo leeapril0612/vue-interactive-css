@@ -37,15 +37,15 @@ onMounted(() => {
     // scrollTop = document.documentElement.scrollTop;
     var scroll = this.scrollY;
     // console.log(scrollY / 5)
-    starBg.style.transform = "translateY(" + -scroll / 3 + "px)";
-    title.style.transform = "translateY(" + scroll / 1.7 + "px)";
+    (starBg as HTMLDivElement).style.transform = "translateY(" + -scroll / 3 + "px)";
+    (title as HTMLDivElement).style.transform = "translateY(" + scroll / 1.7 + "px)";
   });
 
   //스크롤 이동
   setTimeout(function () {
 
     window.scrollTo({
-      top: document.querySelector('.bottom').offsetTop
+      top: (document.querySelector('.bottom') as HTMLButtonElement)?.offsetTop
       , behavior: 'smooth'
     });
     // document.querySelector('.bottom').scrollIntoView({ behavior: 'smooth' });

@@ -2,9 +2,9 @@
 import { onMounted } from "vue";
 let prev_button, next_button;
 let pageNum = 0;
-let album;
-let totalNum;
-let pointBtnAll;
+let album: any;
+let totalNum: any;
+let pointBtnAll: any;
 let contentWrap;
 let bgArray = new Array();
 bgArray[0] = ["#0272a4", "#f6a564"];
@@ -46,9 +46,9 @@ onMounted(() => {
   }
 
   if (mobileChk()) {
-    contentWrap.addEventListener("touchstart", touchFunc, false);
+    contentWrap?.addEventListener("touchstart", touchFunc, false);
     // contentWrap.addEventListener("touchmove", touchFunc, false);
-    contentWrap.addEventListener("touchend", touchFunc, false);
+    contentWrap?.addEventListener("touchend", touchFunc, false);
   }
 
   let start_X = 0;
@@ -57,7 +57,7 @@ onMounted(() => {
   pageChangeFunc();
 
   /* 터치 처리와 관련된 */
-  function touchFunc(evt) {
+  function touchFunc(evt: any) {
     // console.log(evt.type)
     // return false;
     // evt.preventDefault();
@@ -129,7 +129,7 @@ onMounted(() => {
     }
     album[pageNum].classList.add("active");
     pointBtnAll[pageNum].classList.add("active");
-    document.querySelectorAll(".disk_inner")[pageNum].style.background = bgArray[pageNum][0];
+    (document.querySelectorAll(".disk_inner")[pageNum] as HTMLDivElement).style.background = bgArray[pageNum][0];
   }
 
   /* 해당 모바일이 무엇인지 검사해줌 */

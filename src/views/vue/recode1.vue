@@ -20,7 +20,7 @@ const data = [
 
 ]
 
-const nextPage = (index) => {
+const nextPage = (index: number) => {
   if (index < 0) {
     selected.value = data.length - 1
   } else if (data.length <= index) {
@@ -30,7 +30,7 @@ const nextPage = (index) => {
   }
 }
 
-const clcikCoverImg = (item) => {
+const clcikCoverImg = (item: any) => {
 
 }
 
@@ -38,13 +38,14 @@ const clcikCoverImg = (item) => {
 <template>
   <article class="contentWrap">
     <Album v-for="(item, index) in data" :is-active="selected === index" :cover-img="item.coverImg"
-      :disk-inner-color="item.diskInnerColor" @clcikCoverImg="clcikCoverImg()" :key="index" />
+      :disk-inner-color="item.diskInnerColor" @clcikCoverImg="clcikCoverImg(item)" :key="index" />
   </article>
 
   <div class="buttonWrap">
     <button type="button" @click="nextPage(selected - 1)">PREV</button>
     <ul class="pointWrap">
-      <li v-for="(item, index) in data" :class="{ active: selected === index }" :key="index" @click="nextPage(index)"></li>
+      <li v-for="(item, index) in data" :class="{ active: selected === index }" :key="index" @click="nextPage(index)">
+      </li>
     </ul>
     <button type="button" @click="nextPage(selected + 1)">NEXT</button>
   </div>

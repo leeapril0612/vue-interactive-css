@@ -26,7 +26,7 @@ onMounted(() => {
   });
 
   //텍스트 모션
-  titleRefs.value?.map((titleRef) => {
+  titleRefs.value?.map((titleRef: any) => {
     TweenMax.from(titleRef, 1, {
       autoAlpha: 0,
       delay: Math.random() * 1,

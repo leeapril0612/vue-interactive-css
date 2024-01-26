@@ -24,7 +24,7 @@ function resize() {
 }
 function cardRandom() {
   console.log(_cards)
-  _cards.value.forEach(function (item, i) {
+  _cards.value.forEach(function (item: any, i: number) {
 
     TweenMax.to(item, 1, {
       top: Math.random() * windowHeight.value,
@@ -38,7 +38,7 @@ function cardRandom() {
 }
 //초기화, 리셋 버튼 클릭시 실행
 function cardSetting() {
-  _cards.value.forEach(function (item, i) {
+  _cards.value.forEach(function (item: any, i: number) {
     //console.log(item)
 
     TweenMax.to(item, 1, {
