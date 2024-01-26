@@ -1,6 +1,6 @@
-<script setup>
+<script setup lang="ts">
 import Album from '@/components/recode/Album.vue';
-import {ref} from 'vue'
+import { ref } from 'vue'
 
 const selected = ref(0)
 
@@ -17,13 +17,13 @@ const data = [
     coverImg: 'https://lh3.googleusercontent.com/My1QVMpGzMwQmF6IprATeayjl5J_11wsN5xUvRTpNtBfQYjff1oTCw0Yf3pIFr5MPmEnWL-_wAUM89lTRA=w544-h544-l90-rj',
     diskInnerColor: '#9b9798'
   },
-  
+
 ]
 
 const nextPage = (index) => {
-  if(index < 0) {
+  if (index < 0) {
     selected.value = data.length - 1
-  } else if( data.length <= index) {
+  } else if (data.length <= index) {
     selected.value = 0
   } else {
     selected.value = index
@@ -31,32 +31,22 @@ const nextPage = (index) => {
 }
 
 const clcikCoverImg = (item) => {
-  
+
 }
 
 </script>
 <template>
   <article class="contentWrap">
-    <Album
-      v-for="(item, index) in data"
-      :is-active="selected === index"
-      :cover-img="item.coverImg"
-      :disk-inner-color="item.diskInnerColor"
-      @clcikCoverImg="clcikCoverImg()"
-      :key="index"
-    />
+    <Album v-for="(item, index) in data" :is-active="selected === index" :cover-img="item.coverImg"
+      :disk-inner-color="item.diskInnerColor" @clcikCoverImg="clcikCoverImg()" :key="index" />
   </article>
 
   <div class="buttonWrap">
     <button type="button" @click="nextPage(selected - 1)">PREV</button>
     <ul class="pointWrap">
-      <li 
-        v-for="(item, index) in data"
-        :class="{active: selected === index}"
-        :key="index"
-        @click="nextPage(index)"></li>
+      <li v-for="(item, index) in data" :class="{ active: selected === index }" :key="index" @click="nextPage(index)"></li>
     </ul>
-    <button type="button"  @click="nextPage(selected + 1)">NEXT</button>
+    <button type="button" @click="nextPage(selected + 1)">NEXT</button>
   </div>
 </template>
 <style>
@@ -79,6 +69,7 @@ body {
   text-align: center;
   width: 100%;
 }
+
 .buttonWrap button {
   padding: 6px 20px;
   margin: 0 3px;
@@ -86,15 +77,18 @@ body {
   color: #fff;
   transition: all 0.3s ease-out;
 }
+
 .buttonWrap button:hover {
   background-color: #fff;
   color: #000;
 }
+
 .buttonWrap .pointWrap {
   position: relative;
   display: inline-block;
   padding: 0 10px;
 }
+
 .buttonWrap .pointWrap li {
   position: relative;
   display: inline-block;
@@ -107,6 +101,7 @@ body {
   border-radius: 50%;
   transition: background 0.3s ease-out;
 }
+
 .buttonWrap .pointWrap li.active {
   background-color: black;
 }

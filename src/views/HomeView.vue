@@ -11,4 +11,6 @@
   <RouterLink :to="{ name: 'vue/star' }">vue/star</RouterLink>
 
   <br>
+
+  <RouterLink :to="{ name: 'vue/card1' }">vue/card1</RouterLink>
 </template>

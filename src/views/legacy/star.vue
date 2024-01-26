@@ -26,7 +26,7 @@
     </div>
   </section>
 </template>
-<script setup>
+<script setup lang="ts">
 import { onMounted } from 'vue'
 onMounted(() => {
   var starBg = document.querySelector(".starBg");
@@ -56,6 +56,7 @@ onMounted(() => {
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap");
+
 body {
   overflow-x: hidden;
   background: url(../../assets/images/bg.jpg);
@@ -125,5 +126,4 @@ section.bottom .contWrap h2 {
   width: 100vw;
   height: 200vh;
 }
-
 </style>

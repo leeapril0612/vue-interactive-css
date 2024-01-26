@@ -1,10 +1,7 @@
 <template>
-  <section 
-    class="album"
-    :class="{
-      active: props.isActive
-    }"
-  >
+  <section class="album" :class="{
+    active: props.isActive
+  }">
     <div class="disk">
       <div class="disk_inner" :style="{
         backgroundColor: props.diskInnerColor
@@ -12,12 +9,12 @@
     </div>
     <div @click.prevent="emits('clcikCoverImg')" class="coverImg">
       <img :src="imageUrl" alt="">
-    </div >
+    </div>
   </section>
 </template>
 
-<script setup>
-import {computed} from 'vue'
+<script setup lang="ts">
+import { computed } from 'vue'
 const props = defineProps({
   isActive: {
     type: Boolean,
@@ -164,6 +161,7 @@ const imageUrl = computed(() => {
   0% {
     transform: rotate(0);
   }
+
   100% {
     transform: rotate(360deg);
   }
