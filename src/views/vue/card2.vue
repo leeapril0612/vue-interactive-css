@@ -7,8 +7,9 @@ const titleRef = ref()
 const selectedSetting = ref(3)
 const windowWidth = ref(0)
 const windowHeight = ref(0)
-
+const contentsRef = ref()
 onMounted(() => {
+  TweenMax.set(contentsRef.value, { perspective: 400 });
   resize()
   TweenMax.from(titleRef.value, 1, {
     top: -50,
@@ -63,7 +64,7 @@ function cardSetting3() {
       top: windowHeight.value / 2 + i * 30 - 100,
       left: windowWidth.value / 2 - i * 80,
       rotationX: 10,
-      rotationY: 15 * i,
+      rotationY: -10 * i,
       rotationZ: 10 * i,
       ease: Power4.easeInOut,
       delay: i * .15
@@ -108,7 +109,7 @@ const buttons = ['button 1', 'button 2', 'button 3', 'button 4']
 </script>
 <template>
   <h1 class="title" ref="titleRef">section5-card2</h1>
-  <section>
+  <section ref="contentsRef">
     <div v-for="i in cards" :key="i" class="cardItem" ref="_cards">CARD</div>
   </section>
   <div class="buttonWrap">
