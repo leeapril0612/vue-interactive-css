@@ -13,5 +13,6 @@
   <br>
 
   <RouterLink :to="{ name: 'vue/card1' }">vue/card1</RouterLink><br>
-  <RouterLink :to="{ name: 'vue/card2' }">vue/card2</RouterLink>
+  <RouterLink :to="{ name: 'vue/card2' }">vue/card2</RouterLink><br>
+  <RouterLink :to="{ name: 'vue/particle' }">vue/particle</RouterLink>
 </template>
