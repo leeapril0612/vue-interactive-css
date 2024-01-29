@@ -13,13 +13,14 @@
   </div>
 </template>
 <script setup lang="ts">
-import TweenMax, { Power4, Power3 } from 'gsap'
+import TweenMax, { Power4 } from 'gsap'
 import { onMounted, onUnmounted, ref } from 'vue'
 
 const buttons = [
   'NO 1',
   'NO 2',
-  'NO 3'
+  'NO 3',
+  'NO 4'
 ]
 const _textItem = ref()
 const _contentSection = ref()
@@ -75,14 +76,34 @@ function motionSetting(pageNum: number) {
     _textItem.value.forEach(function (item: HTMLDivElement, i: number) {
       TweenMax.to(item, 1, {
         top: windowHeight.value / 2 + Math.sin(i / 3) * 40,
-        left: i * 20, //windowWidth / 2 ,
+        left: i * 20,
         rotationX: 0,
         rotationY: 0,
         rotationZ: 0,
         autoAlpha: 1,
         scale: .5,
         ease: Power4.easeInOut,
-        delay: i * .02 //"random(0,.5)"
+        delay: i * .02 
+      })
+    })
+  } else if (pageNum == 3) {
+    _textItem.value.forEach(function (item: HTMLDivElement, i: number) {
+      const radius = windowHeight.value / 2.5
+      const cx = windowHeight.value / 2
+      const cy = windowWidth.value / 2
+      const x = cx + radius * Math.sin((i + 1) * 3.6)
+      const y = cy + radius * Math.cos((i + 1) * 3.6)
+
+      TweenMax.to(item, 1, {
+        top: x,
+        left: y,
+        rotationX: 0,
+        rotationY: 0,
+        rotationZ: 0,
+        autoAlpha: 1,
+        scale: 0.3,
+        ease: Power4.easeInOut,
+        delay: i * .02
       })
     })
   }
@@ -137,8 +158,9 @@ section {
 section .textItem {
   position: absolute;
   font-size: 2rem;
-  text-align: right;
+  text-align: center;
   color: #fff;
+  width: 2rem
 }
 
 .buttonWrap {
