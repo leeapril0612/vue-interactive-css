@@ -13,16 +13,12 @@ const titleRef = ref()
 const bottomRef = ref()
 
 onMounted(() => {
-  console.log(titleRefs)
-  var starBg = ref() // document.querySelector(".starBg")
-  var title = ref() // document.querySelector(".title")
 
   //스크롤 이벤트
   window.addEventListener("scroll", function (event) {
-    // scrollTop = document.documentElement.scrollTop
-    var scroll = this.scrollY;
-    starBg.value.style.transform = `translateY("${-scroll / 3}px)`
-    title.value.style.transform = `translateY("${scroll / 1.7}px)`
+    const scroll = this.scrollY;
+    starBgRef.value.style.transform = `translateY("${-scroll / 3}px)`
+    titleRef.value.style.transform = `translateY("${scroll / 1.7}px)`
   });
 
   //텍스트 모션
