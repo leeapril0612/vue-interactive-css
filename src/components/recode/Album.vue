@@ -33,7 +33,11 @@ const props = defineProps({
 const emits = defineEmits(["clcikCoverImg"])
 
 const imageUrl = computed(() => {
-  return new URL(props.coverImg).href;
+  try {
+    return new URL(props.coverImg)?.href
+  } catch (error) {
+    return ''
+  }
 })
 </script>
 
