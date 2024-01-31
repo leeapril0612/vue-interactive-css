@@ -28,7 +28,7 @@ const _contentSection = ref()
 const ary = Array(100)
 const windowWidth = ref()
 const windowHeight = ref();
-const bgColorArr = ["#2eccc4", "#ea204f", "#20a9ea"];
+const bgColorArr = ["#2eccc4", "#ea204f", "#20a9ea", "#208ecd"];
 
 
 function motionSetting(pageNum: number) {
@@ -83,7 +83,7 @@ function motionSetting(pageNum: number) {
         autoAlpha: 1,
         scale: .5,
         ease: Power4.easeInOut,
-        delay: i * .02 
+        delay: i * .02
       })
     })
   } else if (pageNum == 3) {
@@ -91,8 +91,8 @@ function motionSetting(pageNum: number) {
       const radius = windowHeight.value / 2.5
       const cx = windowHeight.value / 2
       const cy = windowWidth.value / 2
-      const x = cx + radius * Math.sin((i + 1) * 3.6)
-      const y = cy + radius * Math.cos((i + 1) * 3.6)
+      const x = cx + radius * Math.sin((degreesToRadians(i * 3.6)))
+      const y = cy + radius * Math.cos((degreesToRadians(i * 3.6)))
 
       TweenMax.to(item, 1, {
         top: x,
@@ -109,6 +109,10 @@ function motionSetting(pageNum: number) {
   }
 }
 
+function degreesToRadians(degrees: number) {
+  const pi = Math.PI;
+  return degrees * (pi / 180);
+}
 
 
 function resize() {
