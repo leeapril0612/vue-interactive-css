@@ -74,11 +74,11 @@ function cardSetting3() {
 function cardSetting4() {
   _cards.value.forEach(function (item: HTMLDivElement, i: number) {
     TweenMax.to(item, 1, {
-      top: windowHeight.value / 2 - i * 50,
-      left: windowWidth.value / 2 + i * 60 - 200,
-      rotationX: 0,
-      rotationY: 0,
-      rotationZ: 0,
+      top: windowHeight.value / 2 + i * 30 - 100,
+      left: windowWidth.value / 2 - i * 100,
+      rotationX: 30,
+      rotationY: -15 * i,
+      rotationZ: 10 * i,
       ease: Power4.easeInOut,
       delay: i * .15
     })
